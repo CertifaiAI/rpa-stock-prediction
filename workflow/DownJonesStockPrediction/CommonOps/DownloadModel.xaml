@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="DownloadModel" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="977.6,2972" sap2010:WorkflowViewState.IdRef="DownloadModel_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="DownloadModel" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="977.6,3676.8" sap2010:WorkflowViewState.IdRef="DownloadModel_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -45,14 +45,20 @@
       <AssemblyReference>System.ValueTuple</AssemblyReference>
       <AssemblyReference>System.ServiceModel</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="DownloadModel" sap:VirtualizedContainerService.HintSize="957.6,2912" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="DownloadModel" sap:VirtualizedContainerService.HintSize="957.6,3616.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Boolean" Name="modelpathexits" />
       <Variable x:TypeArguments="x:Boolean" Name="modelexits" />
       <Variable x:TypeArguments="x:Boolean" Default="True" Name="NotFinish" />
       <Variable x:TypeArguments="x:Boolean" Default="False" Name="Downloaded" />
+      <Variable x:TypeArguments="s:DateTime" Name="StartTime" />
+      <Variable x:TypeArguments="s:DateTime" Name="CurrentTime" />
+      <Variable x:TypeArguments="x:TimeSpan" Name="CalDiff" />
+      <Variable x:TypeArguments="x:Double" Name="TimeDiff" />
+      <Variable x:TypeArguments="x:Double" Default="60" Name="TimeLimit" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -66,21 +72,21 @@
         <ui:CreateDirectory ContinueOnError="{x:Null}" DisplayName="Create model Folder" sap:VirtualizedContainerService.HintSize="333.6,85.6" sap2010:WorkflowViewState.IdRef="CreateDirectory_2" Path="[Directory.GetCurrentDirectory() + &quot;\model&quot;]" />
       </If.Else>
     </If>
-    <If Condition="[modelexits]" sap:VirtualizedContainerService.HintSize="916,2283.2" sap2010:WorkflowViewState.IdRef="If_4">
+    <If Condition="[modelexits]" sap:VirtualizedContainerService.HintSize="916,2988" sap2010:WorkflowViewState.IdRef="If_4">
       <If.Else>
-        <ui:OpenBrowser BrowserType="{x:Null}" CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" DisplayName="Open Browser" sap:VirtualizedContainerService.HintSize="772,2133.6" sap2010:WorkflowViewState.IdRef="OpenBrowser_2" Url="www.google.com">
+        <ui:OpenBrowser BrowserType="{x:Null}" CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" DisplayName="Open Browser" sap:VirtualizedContainerService.HintSize="772,2838.4" sap2010:WorkflowViewState.IdRef="OpenBrowser_2" Url="www.google.com">
           <ui:OpenBrowser.Body>
             <ActivityAction x:TypeArguments="x:Object">
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
               </ActivityAction.Argument>
-              <Sequence sap:VirtualizedContainerService.HintSize="738.4,2033.6" sap2010:WorkflowViewState.IdRef="Sequence_7">
+              <Sequence sap:VirtualizedContainerService.HintSize="738.4,2738.4" sap2010:WorkflowViewState.IdRef="Sequence_7">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="696.8,1793.6" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="696.8,2498.4" sap2010:WorkflowViewState.IdRef="Sequence_5">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -189,15 +195,23 @@
                       </ui:Target>
                     </ui:Click.Target>
                   </ui:Click>
-                  <While sap:VirtualizedContainerService.HintSize="655.2,592" sap2010:WorkflowViewState.IdRef="While_1" Condition="[NotFinish]">
-                    <Sequence sap:VirtualizedContainerService.HintSize="610.4,432.8" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                  <Assign DisplayName="Assign Start Time" sap:VirtualizedContainerService.HintSize="655.2,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="s:DateTime">[StartTime]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="s:DateTime">[DateTime.Now]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                  <While sap:VirtualizedContainerService.HintSize="655.2,1196.8" sap2010:WorkflowViewState.IdRef="While_1" Condition="[NotFinish]">
+                    <Sequence sap:VirtualizedContainerService.HintSize="610.4,1037.6" sap2010:WorkflowViewState.IdRef="Sequence_6">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                       <ui:PathExists DisplayName="Path Exists" Exists="[Downloaded]" sap:VirtualizedContainerService.HintSize="568.8,90.4" sap2010:WorkflowViewState.IdRef="PathExists_6" Path="[Directory.GetCurrentDirectory() + &quot;\model\stock_model.h5&quot;]" PathType="File" />
-                      <If Condition="[Downloaded]" sap:VirtualizedContainerService.HintSize="568.8,209.6" sap2010:WorkflowViewState.IdRef="If_5">
+                      <If Condition="[Downloaded]" DisplayName="If finish downloaded?" sap:VirtualizedContainerService.HintSize="568.8,209.6" sap2010:WorkflowViewState.IdRef="If_5">
                         <If.Then>
                           <Assign sap:VirtualizedContainerService.HintSize="262.4,60" sap2010:WorkflowViewState.IdRef="Assign_1">
                             <Assign.To>
@@ -218,6 +232,42 @@
                             </Assign.Value>
                           </Assign>
                         </If.Else>
+                      </If>
+                      <Assign DisplayName="Assign Current Time" sap:VirtualizedContainerService.HintSize="568.8,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="s:DateTime">[CurrentTime]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="s:DateTime">[DateTime.Now]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <Assign DisplayName="Calculate Total Time" sap:VirtualizedContainerService.HintSize="568.8,60" sap2010:WorkflowViewState.IdRef="Assign_5">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:TimeSpan">[CalDiff]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:TimeSpan">[CurrentTime-StartTime]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <Assign DisplayName="Assign Time Different" sap:VirtualizedContainerService.HintSize="568.8,60" sap2010:WorkflowViewState.IdRef="Assign_6">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Double">[TimeDiff]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Double">[CalDiff.TotalSeconds]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                      <If Condition="[TimeDiff &gt; TimeLimit]" DisplayName="If Time limit reach?" sap:VirtualizedContainerService.HintSize="568.8,264.8" sap2010:WorkflowViewState.IdRef="If_6">
+                        <If.Then>
+                          <Sequence sap:VirtualizedContainerService.HintSize="241.6,115.2" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <TerminateWorkflow DisplayName="Terminate Workflow" sap:VirtualizedContainerService.HintSize="200,22.4" sap2010:WorkflowViewState.IdRef="TerminateWorkflow_1" Reason="Stock Model download time out" />
+                          </Sequence>
+                        </If.Then>
                       </If>
                     </Sequence>
                   </While>

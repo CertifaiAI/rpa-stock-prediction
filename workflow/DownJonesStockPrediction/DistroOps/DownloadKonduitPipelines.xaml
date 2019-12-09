@@ -6,7 +6,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>395.2,2008</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>395.2,2006.4</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>DownloadAndExtract_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -60,9 +60,10 @@
       <AssemblyReference>UiPath.Java.Activities</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>System.IO.Compression</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="DownloadAndExtract" sap:VirtualizedContainerService.HintSize="375.2,1948" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="DownloadAndExtract" sap:VirtualizedContainerService.HintSize="375.2,1946.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="sn:WebClient" Default="[New WebClient()]" Name="FileDownloadClient" />
       <Variable x:TypeArguments="s:DateTime" Name="start_time" />
@@ -101,9 +102,9 @@
         <InArgument x:TypeArguments="s:DateTime">[DateTime.Now]</InArgument>
       </Assign.Value>
     </Assign>
-    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="FileDownloadIE workflow" sap:VirtualizedContainerService.HintSize="333.6,89.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="DistroOps\FileDownloadIE.xaml">
+    <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="FileDownloadIE workflow" sap:VirtualizedContainerService.HintSize="333.6,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="DistroOps\FileDownloadIE.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="in_FileURL">https://github.com/KonduitAI/mailboxdetection-workflow/releases/tag/v1.1</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_FileURL">https://github.com/skymindglobal/rpa-stock-prediction/releases/tag/v1.0</InArgument>
         <InArgument x:TypeArguments="x:String" x:Key="in_ExtractPath">[Directory.GetCurrentDirectory()]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>

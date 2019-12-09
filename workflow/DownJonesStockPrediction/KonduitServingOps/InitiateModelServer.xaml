@@ -45,6 +45,7 @@
       <AssemblyReference>System.ValueTuple</AssemblyReference>
       <AssemblyReference>System.ServiceModel</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="Start_Konduit_Serving" sap:VirtualizedContainerService.HintSize="836,1239.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -116,7 +117,7 @@
           </sap:WorkflowViewStateService.ViewState>
           <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Download and extract server to zip file" sap:VirtualizedContainerService.HintSize="333.6,88" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_7" UnSafe="False" WorkflowFileName="DistroOps\DownloadKonduitPipelines.xaml">
             <ui:InvokeWorkflowFile.Arguments>
-              <InArgument x:TypeArguments="x:String" x:Key="in_FileURL">https://github.com/KonduitAI/mailboxdetection-workflow/releases/download/v1.1/distro.zip</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="in_FileURL">https://github.com/skymindglobal/rpa-stock-prediction/releases/download/v1.0/distro.zip</InArgument>
               <InArgument x:TypeArguments="x:String" x:Key="in_ExtractPath">[Directory.GetCurrentDirectory()]</InArgument>
             </ui:InvokeWorkflowFile.Arguments>
           </ui:InvokeWorkflowFile>

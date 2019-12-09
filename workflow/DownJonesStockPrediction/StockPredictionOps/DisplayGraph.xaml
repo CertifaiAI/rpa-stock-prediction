@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="DisplayGraph" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="592,903.2" sap2010:WorkflowViewState.IdRef="DisplayGraph_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="DisplayGraph" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="592,963.2" sap2010:WorkflowViewState.IdRef="DisplayGraph_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -48,7 +48,7 @@
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="DisplayGraph" sap:VirtualizedContainerService.HintSize="572,803.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="DisplayGraph" sap:VirtualizedContainerService.HintSize="572,903.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Default="[Directory.GetCurrentDirectory() + &quot;\html_webpages\&quot;]" Name="indexdir" />
     </Sequence.Variables>
@@ -57,18 +57,19 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:OpenBrowser BrowserType="{x:Null}" CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" DisplayName="Open Browser" sap:VirtualizedContainerService.HintSize="530.4,710.4" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" Url="[indexdir + &quot;index.html&quot;]">
+    <ui:OpenBrowser BrowserType="{x:Null}" CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" UiBrowser="{x:Null}" DisplayName="Open Browser" sap:VirtualizedContainerService.HintSize="530.4,810.4" sap2010:WorkflowViewState.IdRef="OpenBrowser_1" Url="[indexdir + &quot;index.html&quot;]">
       <ui:OpenBrowser.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="496.8,610.4" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="496.8,710.4" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
+            <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="455.2,60" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;Press ESC button in order to exit application.&quot;]" />
             <ui:MonitorEvents ContinueOnError="{x:Null}" DisplayName="Monitor Events" sap:VirtualizedContainerService.HintSize="455.2,517.6" sap2010:WorkflowViewState.IdRef="MonitorEvents_1" RepeatForever="False">
               <ui:MonitorEvents.Handler>
                 <ActivityAction x:TypeArguments="x:Object">
@@ -83,7 +84,7 @@
                     </sap:WorkflowViewStateService.ViewState>
                     <ui:CloseApplication DisplayName="Close Application 'java.exe '" sap:VirtualizedContainerService.HintSize="333.6,107.2" sap2010:WorkflowViewState.IdRef="CloseApplication_1">
                       <ui:CloseApplication.Target>
-                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="780a520c915f1ab289cd4c9f305be757" Selector="&lt;wnd app='java.exe' cls='ConsoleWindowClass' title='*' /&gt;">
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="4ed9c2023f9653d8837822faaf566221" Selector="&lt;wnd app='java.exe' cls='ConsoleWindowClass' title='*\workflow\DownJonesS*' /&gt;">
                           <ui:Target.TimeoutMS>
                             <InArgument x:TypeArguments="x:Int32" />
                           </ui:Target.TimeoutMS>

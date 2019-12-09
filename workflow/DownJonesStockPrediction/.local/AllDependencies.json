@@ -1824,9 +1824,9 @@
     "restore": {
       "projectUniqueName": "DownJonesStockPrediction",
       "projectName": "DownJonesStockPrediction",
-      "projectPath": "C:\\Users\\TUF\\Desktop\\rpa_ai_template\\stock-prediction\\workflow\\DownJonesStockPrediction\\.local",
+      "projectPath": "C:\\Users\\TUF\\Desktop\\stock_prediction_github\\workflow\\DownJonesStockPrediction\\.local",
       "packagesPath": "C:\\Users\\TUF\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\TUF\\Desktop\\rpa_ai_template\\stock-prediction\\workflow\\DownJonesStockPrediction\\.local"
+      "outputPath": "C:\\Users\\TUF\\Desktop\\stock_prediction_github\\workflow\\DownJonesStockPrediction\\.local"
     },
     "frameworks": {
       "net461": {

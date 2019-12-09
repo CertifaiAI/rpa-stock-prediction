@@ -174,7 +174,7 @@
         <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="e8b8bf629224b035170179bf55aef049" Selector="&lt;wnd app='iexplore.exe' cls='IEFrame' omit:title='Release Konduit-Serving 1.2.1 Release · KonduitAI/mailboxdetecti*' /&gt;&lt;wnd aaname='Notification' cls='DirectUIHWND' /&gt;&lt;ctrl automationid='IENotificationBar' /&gt;&lt;ctrl name='View downloads' role='push button' /&gt;" TimeoutMS="1000" WaitForReady="INTERACTIVE" />
       </ui:Click.Target>
     </ui:Click>
-    <ui:CloseWindow TimeoutMS="{x:Null}" UseWindow="{x:Null}" DisplayName="Close Window 'iexplore.exe Release'" sap:VirtualizedContainerService.HintSize="655.2,107.2" sap2010:WorkflowViewState.IdRef="CloseWindow_2" InformativeScreenshot="0388f2733ec7a6f17bb5e54f14ca3fbb" Selector="&lt;wnd app='iexplore.exe' cls='IEFrame' title='Release Konduit-Serving*' /&gt;" WaitForReady="INTERACTIVE" />
+    <ui:CloseWindow TimeoutMS="{x:Null}" UseWindow="{x:Null}" DisplayName="Close Window 'iexplore.exe Release'" sap:VirtualizedContainerService.HintSize="655.2,107.2" sap2010:WorkflowViewState.IdRef="CloseWindow_2" InformativeScreenshot="23c248c18d8da467398ac847e75afed3" Selector="&lt;wnd app='iexplore.exe' cls='IEFrame' title='*Release down-jones-stock-prediction*' /&gt;" WaitForReady="INTERACTIVE" />
     <DoWhile DisplayName="Do While" sap:VirtualizedContainerService.HintSize="655.2,564.8" sap2010:WorkflowViewState.IdRef="DoWhile_1">
       <DoWhile.Variables>
         <Variable x:TypeArguments="x:Boolean" Default="False" Name="Downloading" />
