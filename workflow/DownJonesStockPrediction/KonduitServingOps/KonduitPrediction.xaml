@@ -1,0 +1,183 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="KonduitPrediction" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="date_in" Type="InArgument(x:String)" />
+    <x:Property Name="open_in" Type="InArgument(x:String)" />
+    <x:Property Name="high_in" Type="InArgument(x:String)" />
+    <x:Property Name="low_in" Type="InArgument(x:String)" />
+    <x:Property Name="close_in" Type="InArgument(x:String)" />
+    <x:Property Name="adj_in" Type="InArgument(x:String)" />
+    <x:Property Name="volume_in" Type="InArgument(x:String)" />
+    <x:Property Name="average_in" Type="InArgument(x:String)" />
+    <x:Property Name="date_out" Type="OutArgument(x:String)" />
+    <x:Property Name="open_out" Type="OutArgument(x:String)" />
+    <x:Property Name="high_out" Type="OutArgument(x:String)" />
+    <x:Property Name="low_out" Type="OutArgument(x:String)" />
+    <x:Property Name="close_out" Type="OutArgument(x:String)" />
+    <x:Property Name="adj_out" Type="OutArgument(x:String)" />
+    <x:Property Name="volume_out" Type="OutArgument(x:String)" />
+    <x:Property Name="average_out" Type="OutArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>395.2,1480.8</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>KonduitPrediction_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="KonduitPrediction" sap:VirtualizedContainerService.HintSize="375.2,1380.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Default="[Directory.GetCurrentDirectory().Replace(&quot;\&quot;, &quot;\\&quot;) + &quot;\\model\\stock_model.h5&quot;]" Name="modelpath" />
+      <Variable x:TypeArguments="x:String" Default="[&quot;{&quot;&quot;datein&quot;&quot;:&quot;&quot;&quot; + date_in + &quot;&quot;&quot;,&quot;&quot;openin&quot;&quot;:&quot;&quot;&quot; + open_in + &quot;&quot;&quot;,&quot;&quot;highin&quot;&quot;:&quot;&quot;&quot; + high_in + &quot;&quot;&quot;,&quot;&quot;low_in&quot;&quot;:&quot;&quot;&quot; + low_in + &quot;&quot;&quot;,&quot;&quot;closein&quot;&quot;:&quot;&quot;&quot;+ close_in +&quot;&quot;&quot;,&quot;&quot;adjin&quot;&quot;:&quot;&quot;&quot; + adj_in + &quot;&quot;&quot;,&quot;&quot;volumein&quot;&quot;:&quot;&quot;&quot; + volume_in + &quot;&quot;&quot;,&quot;&quot;averagein&quot;&quot;:&quot;&quot;&quot; + average_in + &quot;&quot;&quot;,&quot;&quot;model_path&quot;&quot;:&quot;&quot;&quot; + modelpath + &quot;&quot;&quot;}&quot;]" Name="body" />
+      <Variable x:TypeArguments="x:String" Default="http://localhost:65322/raw/dictionary" Name="endpoint" />
+      <Variable x:TypeArguments="x:String" Name="response" />
+      <Variable x:TypeArguments="njl:JObject" Name="JsonResponse" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Assign sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[body]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">["{""datein"":""" + date_in + """,""openin"":""" + open_in + """,""highin"":""" + high_in + """,""lowin"":""" + low_in + """,""closein"":"""+ close_in +""",""adjin"":""" + adj_in + """,""volumein"":""" + volume_in + """,""averagein"":""" + average_in + """,""model_path"":""" + modelpath + """}"]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Warn" Message="[&quot;Date: &quot;+date_in + Environment.NewLine + &quot;Open :&quot; + open_in + Environment.NewLine +&quot;High :&quot; + high_in + Environment.NewLine + &quot;Low :&quot; + low_in + Environment.NewLine + &quot;Close :&quot; + close_in + Environment.NewLine + &quot;Adjusted Close :&quot; + adj_in + Environment.NewLine + &quot;Volume :&quot; + volume_in + Environment.NewLine + &quot;Average :&quot; + average_in]" />
+    <ui:HttpClient ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseHeaders="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="JSON" Body="[body]" BodyFormat="application/json" ClientCertificate="[Nothing]" ClientCertificatePassword="[Nothing]" DisplayName="Private: HTTP Request" EndPoint="[endpoint]" sap:VirtualizedContainerService.HintSize="333.6,22.4" sap2010:WorkflowViewState.IdRef="HttpClient_1" Method="POST" Result="[response]" TimeoutMS="60000">
+      <ui:HttpClient.Attachments>
+        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+      </ui:HttpClient.Attachments>
+      <ui:HttpClient.Cookies>
+        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+      </ui:HttpClient.Cookies>
+      <ui:HttpClient.Headers>
+        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+      </ui:HttpClient.Headers>
+      <ui:HttpClient.Parameters>
+        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+      </ui:HttpClient.Parameters>
+      <ui:HttpClient.UrlSegments>
+        <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
+      </ui:HttpClient.UrlSegments>
+    </ui:HttpClient>
+    <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[JsonResponse]" JsonString="[response]" />
+    <Assign DisplayName="Assign dates" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[date_out]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[JsonResponse.Item("dates").ToString()]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="Assign open" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[open_out]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[JsonResponse.Item("opens").ToString()]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="Assign high" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_5">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[high_out]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[JsonResponse.Item("highs").ToString()]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="Assign low" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_6">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[low_out]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[JsonResponse.Item("lows").ToString()]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="Assign close" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_7">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[close_out]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[JsonResponse.Item("closes").ToString()]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="Assign Adj" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_8">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[adj_out]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[JsonResponse.Item("adjs").ToString()]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="Assign volumes" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_9">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[volume_out]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[JsonResponse.Item("volumes").ToString()]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign DisplayName="Assign volumes" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_10">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[average_out]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[JsonResponse.Item("avgs").ToString()]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="333.6,92.8" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Error" Message="[JsonResponse.ToString()]" />
+  </Sequence>
+</Activity>

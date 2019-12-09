@@ -1,0 +1,72 @@
+{
+  "pipelineSteps" : [ {
+    "@type" : "PythonPipelineStep",
+    "affectedInputNames" : [ ],
+    "affectedOutputNames" : [ ],
+    "inputColumnNames" : {
+      "default" : [ "datein", "openin", "highin", "lowin", "closein", "adjin", "volumein", "averagein", "model_path"]
+    },
+    "inputNames" : [ "default" ],
+    "inputSchemas" : {
+      "default" : [ "String", "String", "String", "String", "String", "String", "String", "String", "String" ]
+    },
+    "outputColumnNames" : {
+      "default" : [ "dates", "opens", "highs", "lows", "closes", "adjs", "volumes", "avgs" ]
+    },
+    "outputNames" : [ ],
+    "outputSchemas" : {
+      "default" : [ "String", "String", "String", "String", "String", "String", "String", "String" ]
+    },
+    "pythonConfigs" : {
+      "default" : {
+        "@type" : "PythonConfig",
+        "extraInputs" : { },
+        "modelConfigType" : null,
+        "pythonCode" : null,
+        "pythonCodePath" : "C:\\\\Users\\\\TUF\\\\Desktop\\\\rpa_ai_template\\\\stock-prediction\\\\workflow\\\\DownJonesStockPrediction\\\\script\\\\stockinference.py",
+        "pythonInputs" : {
+          "datein" : "STR",
+          "openin" : "STR",
+		  "highin" : "STR", 
+		  "lowin"  : "STR", 
+		  "closein": "STR", 
+		  "adjin"  : "STR", 
+		  "volumein": "STR", 
+		  "averagein": "STR",
+		  "model_path": "STR"
+        },
+        "pythonOutputs" : {
+		  "dates"  : "STR", 
+		  "opens"  : "STR", 
+		  "highs"  : "STR", 
+		  "lows"   : "STR", 
+		  "closes" : "STR", 
+		  "adjs"   : "STR", 
+		  "volumes": "STR", 
+		  "avgs"   : "STR"
+        },
+        "pythonPath" : "C:\\\\Users\\\\TUF\\\\Desktop\\\\rpa_ai_template\\\\stock-prediction\\\\workflow\\\\DownJonesStockPrediction\\\\distro\\conda\\python37.zip;C:\\\\Users\\\\TUF\\\\Desktop\\\\rpa_ai_template\\\\stock-prediction\\\\workflow\\\\DownJonesStockPrediction\\\\distro\\conda\\DLLs;C:\\\\Users\\\\TUF\\\\Desktop\\\\rpa_ai_template\\\\stock-prediction\\\\workflow\\\\DownJonesStockPrediction\\\\distro\\conda\\lib;C:\\\\Users\\\\TUF\\\\Desktop\\\\rpa_ai_template\\\\stock-prediction\\\\workflow\\\\DownJonesStockPrediction\\\\distro\\conda;;C:\\\\Users\\\\TUF\\\\Desktop\\\\rpa_ai_template\\\\stock-prediction\\\\workflow\\\\DownJonesStockPrediction\\\\distro\\conda\\lib\\site-packages;C:\\\\Users\\\\TUF\\\\Desktop\\\\rpa_ai_template\\\\stock-prediction\\\\workflow\\\\DownJonesStockPrediction\\\\distro\\conda\\lib\\site-packages\\win32;C:\\\\Users\\\\TUF\\\\Desktop\\\\rpa_ai_template\\\\stock-prediction\\\\workflow\\\\DownJonesStockPrediction\\\\distro\\conda\\lib\\site-packages\\win32\\lib;C:\\\\Users\\\\TUF\\\\Desktop\\\\rpa_ai_template\\\\stock-prediction\\\\workflow\\\\DownJonesStockPrediction\\\\distro\\conda\\lib\\site-packages\\Pythonwin;C:\\\\Users\\\\TUF\\\\Desktop\\\\rpa_ai_template\\\\stock-prediction\\\\workflow\\\\DownJonesStockPrediction\\\\distro\\conda\\lib\\site-packages\\IPython\\extensions;C:\\\\Users\\\\TUF\\\\Desktop\\\\rpa_ai_template\\\\stock-prediction\\\\workflow\\\\DownJonesStockPrediction\\\\distro\\scripts",
+        "returnAllInputs" : false,
+        "tensorDataTypesConfig" : null
+      }
+    }
+  } ],
+  "servingConfig" : {
+    "httpPort" : 65322,
+    "inputDataType" : "NUMPY",
+    "listenHost" : "localhost",
+    "logTimings" : false,
+    "outputDataType" : "JSON",
+    "parallelInferenceConfig" : {
+      "batchLimit" : 32,
+      "inferenceMode" : "BATCHED",
+      "maxTrainEpochs" : 1,
+      "queueLimit" : 64,
+      "vertxConfigJson" : null,
+      "workers" : 1
+    },
+    "predictionType" : "RAW",
+    "pubSubConfig" : null,
+    "uploadsDirectory" : "file-uploads/"
+  }
+}

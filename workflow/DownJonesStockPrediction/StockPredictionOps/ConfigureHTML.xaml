@@ -1,0 +1,185 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="ConfigureHTML" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="date_str" Type="InArgument(x:String)" />
+    <x:Property Name="open_str" Type="InArgument(x:String)" />
+    <x:Property Name="high_str" Type="InArgument(x:String)" />
+    <x:Property Name="low_str" Type="InArgument(x:String)" />
+    <x:Property Name="close_str" Type="InArgument(x:String)" />
+    <x:Property Name="adj_str" Type="InArgument(x:String)" />
+    <x:Property Name="volume_str" Type="InArgument(x:String)" />
+    <x:Property Name="average_str" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>586.4,1806.4</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ConfigureHTML_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap:VirtualizedContainerService.HintSize="566.4,1746.4" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Sequence DisplayName="ConfigureHTML" sap:VirtualizedContainerService.HintSize="524.8,2353.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="s:String[]" Name="date_arr" />
+        <Variable x:TypeArguments="s:String[]" Name="open_arr" />
+        <Variable x:TypeArguments="s:String[]" Name="high_arr" />
+        <Variable x:TypeArguments="s:String[]" Name="low_arr" />
+        <Variable x:TypeArguments="s:String[]" Name="close_arr" />
+        <Variable x:TypeArguments="s:String[]" Name="adj_arr" />
+        <Variable x:TypeArguments="s:String[]" Name="volume_arr" />
+        <Variable x:TypeArguments="s:String[]" Name="avg_arr" />
+        <Variable x:TypeArguments="x:Int32" Default="0" Name="i" />
+        <Variable x:TypeArguments="x:String" Default="[Directory.GetCurrentDirectory() + &quot;\html_webpages\index_template.html&quot;]" Name="index_template" />
+        <Variable x:TypeArguments="x:String" Name="temp_str" />
+        <Variable x:TypeArguments="x:String" Default="[Directory.GetCurrentDirectory() + &quot;\html_webpages\index.html&quot;]" Name="outputname" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:ReadTextFile Content="[temp_str]" DisplayName="Read Text File" FileName="[index_template]" sap:VirtualizedContainerService.HintSize="483.2,134.4" sap2010:WorkflowViewState.IdRef="ReadTextFile_1" />
+      <Assign sap:VirtualizedContainerService.HintSize="483.2,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+        <Assign.To>
+          <OutArgument x:TypeArguments="s:String[]">[date_arr]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="s:String[]">[Split(date_str, ",")]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="483.2,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+        <Assign.To>
+          <OutArgument x:TypeArguments="s:String[]">[open_arr]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="s:String[]">[Split(open_str, ",")]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="483.2,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+        <Assign.To>
+          <OutArgument x:TypeArguments="s:String[]">[high_arr]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="s:String[]">[Split(high_str, ",")]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="483.2,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+        <Assign.To>
+          <OutArgument x:TypeArguments="s:String[]">[low_arr]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="s:String[]">[Split(low_str, ",")]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="483.2,60" sap2010:WorkflowViewState.IdRef="Assign_5">
+        <Assign.To>
+          <OutArgument x:TypeArguments="s:String[]">[close_arr]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="s:String[]">[Split(close_str, ",")]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="483.2,60" sap2010:WorkflowViewState.IdRef="Assign_6">
+        <Assign.To>
+          <OutArgument x:TypeArguments="s:String[]">[adj_arr]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="s:String[]">[Split(adj_str, ",")]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="483.2,60" sap2010:WorkflowViewState.IdRef="Assign_7">
+        <Assign.To>
+          <OutArgument x:TypeArguments="s:String[]">[volume_arr]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="s:String[]">[Split(volume_str, ",")]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="483.2,60" sap2010:WorkflowViewState.IdRef="Assign_8">
+        <Assign.To>
+          <OutArgument x:TypeArguments="s:String[]">[avg_arr]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="s:String[]">[Split(average_str, ",")]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <While sap:VirtualizedContainerService.HintSize="483.2,1112" sap2010:WorkflowViewState.IdRef="While_1" Condition="[i &lt; 3]">
+        <Sequence DisplayName="While Sequence" sap:VirtualizedContainerService.HintSize="375.2,952.8" sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:Replace DisplayName="Replace Date" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Replace_1" Input="[temp_str]" IsBuilderTabModified="False" Pattern="[&quot;DAY&quot; + Convert.ToString(i + 1)+&quot;_DATE&quot;]" RegexOption="IgnoreCase, Compiled" Replacement="[date_arr(date_arr.Length - (i+1))]" Result="[temp_str]" />
+          <ui:Replace DisplayName="Replace Open" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Replace_2" Input="[temp_str]" IsBuilderTabModified="False" Pattern="[&quot;DAY&quot; + Convert.ToString(i + 1)+&quot;_OPEN&quot;]" RegexOption="IgnoreCase, Compiled" Replacement="[open_arr(open_arr.Length - (i+1))]" Result="[temp_str]" />
+          <ui:Replace DisplayName="Replace High" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Replace_3" Input="[temp_str]" IsBuilderTabModified="False" Pattern="[&quot;DAY&quot; + Convert.ToString(i + 1)+&quot;_HIGH&quot;]" RegexOption="IgnoreCase, Compiled" Replacement="[high_arr(high_arr.Length - (i+1))]" Result="[temp_str]" />
+          <ui:Replace DisplayName="Replace Low" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Replace_4" Input="[temp_str]" IsBuilderTabModified="False" Pattern="[&quot;DAY&quot; + Convert.ToString(i + 1)+&quot;_LOW&quot;]" RegexOption="IgnoreCase, Compiled" Replacement="[low_arr(low_arr.Length - (i+1))]" Result="[temp_str]" />
+          <ui:Replace DisplayName="Replace Close" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Replace_5" Input="[temp_str]" IsBuilderTabModified="False" Pattern="[&quot;DAY&quot; + Convert.ToString(i + 1)+&quot;_CLOSE&quot;]" RegexOption="IgnoreCase, Compiled" Replacement="[close_arr(close_arr.Length - (i+1))]" Result="[temp_str]" />
+          <ui:Replace DisplayName="Replace Adjusted Close" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Replace_6" Input="[temp_str]" IsBuilderTabModified="False" Pattern="[&quot;DAY&quot; + Convert.ToString(i + 1)+&quot;_ADJ&quot;]" RegexOption="IgnoreCase, Compiled" Replacement="[adj_arr(adj_arr.Length - (i+1))]" Result="[temp_str]" />
+          <ui:Replace DisplayName="Replace Volume" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Replace_7" Input="[temp_str]" IsBuilderTabModified="False" Pattern="[&quot;DAY&quot; + Convert.ToString(i + 1)+&quot;_VOLUME&quot;]" RegexOption="IgnoreCase, Compiled" Replacement="[volume_arr(volume_arr.Length - (i+1))]" Result="[temp_str]" />
+          <ui:Replace DisplayName="Replace Average" sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Replace_8" Input="[temp_str]" IsBuilderTabModified="False" Pattern="[&quot;DAY&quot; + Convert.ToString(i + 1)+&quot;_AVERAGE&quot;]" RegexOption="IgnoreCase, Compiled" Replacement="[avg_arr(avg_arr.Length - (i+1))]" Result="[temp_str]" />
+          <Assign sap:VirtualizedContainerService.HintSize="333.6,60" sap2010:WorkflowViewState.IdRef="Assign_9">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:Int32">[i]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:Int32">[i + 1]</InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </While>
+      <ui:WriteTextFile DisplayName="Write Text File" FileName="[outputname]" sap:VirtualizedContainerService.HintSize="483.2,134.4" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[temp_str]" />
+    </Sequence>
+  </Sequence>
+</Activity>

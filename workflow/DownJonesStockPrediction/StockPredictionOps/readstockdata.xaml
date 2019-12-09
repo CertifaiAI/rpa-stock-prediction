@@ -1,0 +1,305 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="readstockdata" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="csvdir" Type="InArgument(x:String)" />
+    <x:Property Name="date_arr" Type="OutArgument(s:String[])" />
+    <x:Property Name="open_arr" Type="OutArgument(s:Double[])" />
+    <x:Property Name="high_arr" Type="OutArgument(s:Double[])" />
+    <x:Property Name="low_arr" Type="OutArgument(s:Double[])" />
+    <x:Property Name="close_arr" Type="OutArgument(s:Double[])" />
+    <x:Property Name="adjclose_arr" Type="OutArgument(s:Double[])" />
+    <x:Property Name="volume_arr" Type="OutArgument(s:Double[])" />
+    <x:Property Name="average_arr" Type="OutArgument(s:Double[])" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>908,4816</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>readstockdata_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap:VirtualizedContainerService.HintSize="888,4756" sap2010:WorkflowViewState.IdRef="Sequence_7">
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Sequence DisplayName="readstockdata" sap:VirtualizedContainerService.HintSize="846.4,4663.2" sap2010:WorkflowViewState.IdRef="Sequence_1">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="sd:DataTable" Name="myDT" />
+        <Variable x:TypeArguments="x:Int32" Default="0" Name="count" />
+        <Variable x:TypeArguments="scg:List(x:String)" Default="[New List(Of String)]" Name="date_arr_temp" />
+        <Variable x:TypeArguments="scg:List(x:Double)" Default="[New List(Of Double)]" Name="open_arr_temp" />
+        <Variable x:TypeArguments="scg:List(x:Double)" Default="[New List(Of Double)]" Name="average_arr_temp" />
+        <Variable x:TypeArguments="scg:List(x:Double)" Default="[New List(Of Double)]" Name="high_arr_temp" />
+        <Variable x:TypeArguments="scg:List(x:Double)" Default="[New List(Of Double)]" Name="low_arr_temp" />
+        <Variable x:TypeArguments="scg:List(x:Double)" Default="[New List(Of Double)]" Name="close_arr_temp" />
+        <Variable x:TypeArguments="scg:List(x:Double)" Default="[New List(Of Double)]" Name="adjusted_arr_temp" />
+        <Variable x:TypeArguments="scg:List(x:Double)" Default="[New List(Of Double)]" Name="volume_arr_temp" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:ReadCsvFile Encoding="{x:Null}" DataTable="[myDT]" Delimitator="Comma" DisplayName="Read CSV" FilePath="[csvdir]" sap:VirtualizedContainerService.HintSize="804.8,155.2" sap2010:WorkflowViewState.IdRef="ReadCsvFile_1" />
+      <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[myDT]" DisplayName="For Each Row" sap:VirtualizedContainerService.HintSize="804.8,3575.2" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+        <ui:ForEachRow.Body>
+          <ActivityAction x:TypeArguments="sd:DataRow">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="755.2,3426.4" sap2010:WorkflowViewState.IdRef="Sequence_2">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If Condition="[count &lt; 50]" sap:VirtualizedContainerService.HintSize="713.6,3233.6" sap2010:WorkflowViewState.IdRef="If_3">
+                <If.Then>
+                  <While sap:VirtualizedContainerService.HintSize="569.6,3084" sap2010:WorkflowViewState.IdRef="While_2">
+                    <While.Variables>
+                      <Variable x:TypeArguments="x:Int32" Default="0" Name="i" />
+                    </While.Variables>
+                    <While.Condition>[i &lt; row.ItemArray.Length]</While.Condition>
+                    <Sequence DisplayName="While Sequence" sap:VirtualizedContainerService.HintSize="524.8,2924.8" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                      <Sequence.Variables>
+                        <Variable x:TypeArguments="x:Double" Name="average_temp" />
+                      </Sequence.Variables>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <If Condition="[i = 0]" DisplayName="If Date" sap:VirtualizedContainerService.HintSize="483.2,282.4" sap2010:WorkflowViewState.IdRef="If_2">
+                        <If.Then>
+                          <InvokeMethod DisplayName="Invoke Method" sap:VirtualizedContainerService.HintSize="236.8,132.8" sap2010:WorkflowViewState.IdRef="InvokeMethod_1" MethodName="Add">
+                            <InvokeMethod.TargetObject>
+                              <InArgument x:TypeArguments="scg:List(x:String)">[date_arr_temp]</InArgument>
+                            </InvokeMethod.TargetObject>
+                            <InArgument x:TypeArguments="x:String">[row.ItemArray(i).ToString()]</InArgument>
+                          </InvokeMethod>
+                        </If.Then>
+                      </If>
+                      <If Condition="[i = 1]" DisplayName="If Open" sap:VirtualizedContainerService.HintSize="483.2,282.4" sap2010:WorkflowViewState.IdRef="If_4">
+                        <If.Then>
+                          <InvokeMethod DisplayName="Invoke Method" sap:VirtualizedContainerService.HintSize="236.8,132.8" sap2010:WorkflowViewState.IdRef="InvokeMethod_2" MethodName="Add">
+                            <InvokeMethod.TargetObject>
+                              <InArgument x:TypeArguments="scg:List(x:Double)">[open_arr_temp]</InArgument>
+                            </InvokeMethod.TargetObject>
+                            <InArgument x:TypeArguments="x:Double">[Convert.ToDouble(row.ItemArray(i))]</InArgument>
+                          </InvokeMethod>
+                        </If.Then>
+                      </If>
+                      <If Condition="[i = 2]" DisplayName="If High" sap:VirtualizedContainerService.HintSize="483.2,282.4" sap2010:WorkflowViewState.IdRef="If_5">
+                        <If.Then>
+                          <InvokeMethod DisplayName="Invoke Method" sap:VirtualizedContainerService.HintSize="236.8,132.8" sap2010:WorkflowViewState.IdRef="InvokeMethod_4" MethodName="Add">
+                            <InvokeMethod.TargetObject>
+                              <InArgument x:TypeArguments="scg:List(x:Double)">[high_arr_temp]</InArgument>
+                            </InvokeMethod.TargetObject>
+                            <InArgument x:TypeArguments="x:Double">[Convert.ToDouble(row.ItemArray(i))]</InArgument>
+                          </InvokeMethod>
+                        </If.Then>
+                      </If>
+                      <If Condition="[i = 3]" DisplayName="If Low" sap:VirtualizedContainerService.HintSize="483.2,282.4" sap2010:WorkflowViewState.IdRef="If_6">
+                        <If.Then>
+                          <InvokeMethod DisplayName="Invoke Method" sap:VirtualizedContainerService.HintSize="236.8,132.8" sap2010:WorkflowViewState.IdRef="InvokeMethod_5" MethodName="Add">
+                            <InvokeMethod.TargetObject>
+                              <InArgument x:TypeArguments="scg:List(x:Double)">[low_arr_temp]</InArgument>
+                            </InvokeMethod.TargetObject>
+                            <InArgument x:TypeArguments="x:Double">[Convert.ToDouble(row.ItemArray(i))]</InArgument>
+                          </InvokeMethod>
+                        </If.Then>
+                      </If>
+                      <If Condition="[i = 4]" DisplayName="If Close" sap:VirtualizedContainerService.HintSize="483.2,282.4" sap2010:WorkflowViewState.IdRef="If_7">
+                        <If.Then>
+                          <InvokeMethod DisplayName="Invoke Method" sap:VirtualizedContainerService.HintSize="236.8,132.8" sap2010:WorkflowViewState.IdRef="InvokeMethod_6" MethodName="Add">
+                            <InvokeMethod.TargetObject>
+                              <InArgument x:TypeArguments="scg:List(x:Double)">[close_arr_temp]</InArgument>
+                            </InvokeMethod.TargetObject>
+                            <InArgument x:TypeArguments="x:Double">[Convert.ToDouble(row.ItemArray(i))]</InArgument>
+                          </InvokeMethod>
+                        </If.Then>
+                      </If>
+                      <If Condition="[i = 5]" DisplayName="If Adjusted" sap:VirtualizedContainerService.HintSize="483.2,282.4" sap2010:WorkflowViewState.IdRef="If_8">
+                        <If.Then>
+                          <InvokeMethod DisplayName="Invoke Method" sap:VirtualizedContainerService.HintSize="236.8,132.8" sap2010:WorkflowViewState.IdRef="InvokeMethod_7" MethodName="Add">
+                            <InvokeMethod.TargetObject>
+                              <InArgument x:TypeArguments="scg:List(x:Double)">[adjusted_arr_temp]</InArgument>
+                            </InvokeMethod.TargetObject>
+                            <InArgument x:TypeArguments="x:Double">[Convert.ToDouble(row.ItemArray(i))]</InArgument>
+                          </InvokeMethod>
+                        </If.Then>
+                      </If>
+                      <If Condition="[i = 6]" DisplayName="If Volume" sap:VirtualizedContainerService.HintSize="483.2,282.4" sap2010:WorkflowViewState.IdRef="If_9">
+                        <If.Then>
+                          <InvokeMethod DisplayName="Invoke Method" sap:VirtualizedContainerService.HintSize="236.8,132.8" sap2010:WorkflowViewState.IdRef="InvokeMethod_8" MethodName="Add">
+                            <InvokeMethod.TargetObject>
+                              <InArgument x:TypeArguments="scg:List(x:Double)">[volume_arr_temp]</InArgument>
+                            </InvokeMethod.TargetObject>
+                            <InArgument x:TypeArguments="x:Double">[Convert.ToDouble(row.ItemArray(i))]</InArgument>
+                          </InvokeMethod>
+                        </If.Then>
+                      </If>
+                      <If Condition="[i = 7]" DisplayName="If Average" sap:VirtualizedContainerService.HintSize="483.2,475.2" sap2010:WorkflowViewState.IdRef="If_10">
+                        <If.Then>
+                          <Sequence sap:VirtualizedContainerService.HintSize="304,325.6" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <Assign sap:VirtualizedContainerService.HintSize="262.4,60" sap2010:WorkflowViewState.IdRef="Assign_5">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:Double">[average_temp]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:Double">[(Convert.ToDouble(row.ItemArray(2)) + Convert.ToDouble(row.ItemArray(3))) / 2.0]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                            <InvokeMethod DisplayName="Invoke Method" sap:VirtualizedContainerService.HintSize="262.4,132.8" sap2010:WorkflowViewState.IdRef="InvokeMethod_3" MethodName="Add">
+                              <InvokeMethod.TargetObject>
+                                <InArgument x:TypeArguments="scg:List(x:Double)">[average_arr_temp]</InArgument>
+                              </InvokeMethod.TargetObject>
+                              <InArgument x:TypeArguments="x:Double">[average_temp]</InArgument>
+                            </InvokeMethod>
+                          </Sequence>
+                        </If.Then>
+                      </If>
+                      <Assign sap:VirtualizedContainerService.HintSize="483.2,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+                        <Assign.To>
+                          <OutArgument x:TypeArguments="x:Int32">[i]</OutArgument>
+                        </Assign.To>
+                        <Assign.Value>
+                          <InArgument x:TypeArguments="x:Int32">[i + 1]</InArgument>
+                        </Assign.Value>
+                      </Assign>
+                    </Sequence>
+                  </While>
+                </If.Then>
+              </If>
+              <Assign sap:VirtualizedContainerService.HintSize="713.6,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Int32">[count]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Int32">[count + 1]</InArgument>
+                </Assign.Value>
+              </Assign>
+            </Sequence>
+          </ActivityAction>
+        </ui:ForEachRow.Body>
+      </ui:ForEachRow>
+      <Assign sap:VirtualizedContainerService.HintSize="804.8,60" sap2010:WorkflowViewState.IdRef="Assign_6">
+        <Assign.To>
+          <OutArgument x:TypeArguments="s:String[]">[date_arr]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="s:String[]">[date_arr_temp.ToArray()]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="804.8,60" sap2010:WorkflowViewState.IdRef="Assign_7">
+        <Assign.To>
+          <OutArgument x:TypeArguments="s:Double[]">[open_arr]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="s:Double[]">[open_arr_temp.ToArray()]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="804.8,60" sap2010:WorkflowViewState.IdRef="Assign_8">
+        <Assign.To>
+          <OutArgument x:TypeArguments="s:Double[]">[high_arr]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="s:Double[]">[high_arr_temp.ToArray()]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="804.8,60" sap2010:WorkflowViewState.IdRef="Assign_9">
+        <Assign.To>
+          <OutArgument x:TypeArguments="s:Double[]">[low_arr]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="s:Double[]">[low_arr_temp.ToArray()]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="804.8,60" sap2010:WorkflowViewState.IdRef="Assign_10">
+        <Assign.To>
+          <OutArgument x:TypeArguments="s:Double[]">[close_arr]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="s:Double[]">[close_arr_temp.ToArray()]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="804.8,60" sap2010:WorkflowViewState.IdRef="Assign_11">
+        <Assign.To>
+          <OutArgument x:TypeArguments="s:Double[]">[adjclose_arr]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="s:Double[]">[adjusted_arr_temp.ToArray()]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="804.8,60" sap2010:WorkflowViewState.IdRef="Assign_12">
+        <Assign.To>
+          <OutArgument x:TypeArguments="s:Double[]">[volume_arr]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="s:Double[]">[volume_arr_temp.ToArray()]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign sap:VirtualizedContainerService.HintSize="804.8,60" sap2010:WorkflowViewState.IdRef="Assign_13">
+        <Assign.To>
+          <OutArgument x:TypeArguments="s:Double[]">[average_arr]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="s:Double[]">[average_arr_temp.ToArray()]</InArgument>
+        </Assign.Value>
+      </Assign>
+    </Sequence>
+  </Sequence>
+</Activity>

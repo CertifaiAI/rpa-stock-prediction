@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Konduit Stock Prediction - Dow Jones</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+  <!-- Page level plugin CSS-->
+  <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+  <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+
+    <a class="navbar-brand mr-1" href="index.html">Welcome to Konduit RPA & AI demo!</a>
+
+    <!-- Navbar Search -->
+    <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0"></form>
+    <!-- Navbar -->
+    <ul class="navbar-nav ml-auto ml-md-0">
+    </ul>
+
+  </nav>
+
+  <div id="wrapper">
+    <div id="content-wrapper">
+      <div class="container-fluid">
+        <!-- Area Chart 1-->
+        <div class="card mb-3">
+          <div class="card-header">
+            <i class="fas fa-chart-area"></i>
+            Average Stock Price</div>
+          <div class="card-body">
+            <canvas id="average" width="100%" height="30"</canvas>
+          </div>
+        </div>
+		
+		<!-- Area Chart 2-->
+        <div class="card mb-3">
+          <div class="card-header">
+            <i class="fas fa-chart-area"></i>
+            Opening Stock Price</div>
+          <div class="card-body">
+            <canvas id="open" width="100%" height="30"></canvas>
+          </div>
+        </div>
+		
+		<!-- Area Chart 3-->
+        <div class="card mb-3">
+          <div class="card-header">
+            <i class="fas fa-chart-area"></i>
+            Highest Stock Price</div>
+          <div class="card-body">
+            <canvas id="high" width="100%" height="30"></canvas>
+          </div>
+        </div>
+		
+		<!-- Area Chart 4-->
+        <div class="card mb-3">
+          <div class="card-header">
+            <i class="fas fa-chart-area"></i>
+            Lowest Stock Price</div>
+          <div class="card-body">
+            <canvas id="low" width="100%" height="30"></canvas>
+          </div>
+        </div>
+		
+		<!-- Area Chart 5-->
+        <div class="card mb-3">
+          <div class="card-header">
+            <i class="fas fa-chart-area"></i>
+            Closing Stock Price</div>
+          <div class="card-body">
+            <canvas id="close" width="100%" height="30"></canvas>
+          </div>
+        </div>
+		
+		<!-- Area Chart 6-->
+        <div class="card mb-3">
+          <div class="card-header">
+            <i class="fas fa-chart-area"></i>
+            Trade Volume</div>
+          <div class="card-body">
+            <canvas id="volume" width="100%" height="30"></canvas>
+          </div>
+        </div>
+		
+		<!-- Area Chart 7-->
+        <div class="card mb-3">
+          <div class="card-header">
+            <i class="fas fa-chart-area"></i>
+            Adjusted Close Stock Price</div>
+          <div class="card-body">
+            <canvas id="adjusted close" width="100%" height="30"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- DataTables Example -->
+        <div class="card mb-3">
+          <div class="card-header">
+            <i class="fas fa-table"></i>
+            Stock Prediction Table</div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Open</th>
+                    <th>High</th>
+                    <th>Low</th>
+                    <th>Close</th>
+                    <th>Adjusted Close</th>
+					<th>Volume</th>
+					<th>Average</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>DAY1_DATE</td>
+                    <td>DAY1_OPEN</td>
+                    <td>DAY1_HIGH</td>
+                    <td>DAY1_LOW</td>
+                    <td>DAY1_CLOSE</td>
+                    <td>DAY1_ADJ</td>
+					<td>DAY1_VOLUME</td>
+                    <td>DAY1_AVERAGE</td>
+                  </tr>
+				  <tr>
+                    <td>DAY2_DATE</td>
+                    <td>DAY2_OPEN</td>
+                    <td>DAY2_HIGH</td>
+                    <td>DAY2_LOW</td>
+                    <td>DAY2_CLOSE</td>
+                    <td>DAY2_ADJ</td>
+					<td>DAY2_VOLUME</td>
+                    <td>DAY2_AVERAGE</td>
+                  </tr>
+				  <tr>
+                    <td>DAY3_DATE</td>
+                    <td>DAY3_OPEN</td>
+                    <td>DAY3_HIGH</td>
+                    <td>DAY3_LOW</td>
+                    <td>DAY3_CLOSE</td>
+                    <td>DAY3_ADJ</td>
+					<td>DAY3_VOLUME</td>
+                    <td>DAY3_AVERAGE</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="login.html">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Page level plugin JavaScript-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="vendor/chart.js/myChart.js"></script>
+
+
+</body>
+
+</html>
